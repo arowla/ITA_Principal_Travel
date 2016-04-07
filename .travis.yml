@@ -6,6 +6,9 @@ env:
   DOCKER_COMPOSE_VERSION: 1.6.0
 
 language: python
+cache: pip
+python:
+  - "3.5"
 
 before_install:
   - sudo apt-get update
