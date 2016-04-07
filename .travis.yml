@@ -5,11 +5,6 @@ services:
 env:
   DOCKER_COMPOSE_VERSION: 1.6.0
 
-language: python
-cache: pip
-python:
-  - "3.5"
-
 before_install:
   - sudo apt-get update
   - sudo apt-get install -q -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew docker-engine
@@ -19,7 +14,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 after_success:
-  - coveralls
+  - docker-compose run web coveralls
 
 script:
   - docker-compose run web py.test --cov=.
