@@ -6,7 +6,7 @@ env:
   DOCKER_COMPOSE_VERSION: 1.6.0
 
 # this isn't necessary, but otherwise Travis loads Ruby to start with, which is confusing
-language: python
+language: generic
 
 before_install:
   - sudo apt-get update
@@ -17,7 +17,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 after_success:
-  - coveralls -d `pwd`/.coverage.yml
+  - docker-compose run web coveralls
 
 script:
   - docker-compose run web py.test --cov=.
